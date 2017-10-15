@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import { TodoItem } from "./todo-item.model";
+import {TodoService} from "./todo.service";
 
 @Component({
-  selector: 'todo-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  template: `
+  <app-todo-item *ngFor="let item of todoItems" [todoItem]="item" (newTitle)="addItem($event)"></app-todo-item>
+  `,
+  styles: [`div {color: red}`]
 })
 export class AppComponent {
-  title = 'todo';
+  @Output() newTitle: EventEmitter<TodoItem> = new EventEmitter();
+  todoItems: TodoItem[] = [];
+
+  constructor(private toDoService: TodoService) {
+    this.getTodoList();
+  }
+
+  addItem(newTitle: string): void {
+    console.log(newTitle);
+  }
+
+  getTodoList(): void {
+    this.todoItems = this.toDoService.getTodoList();
+  }
 }

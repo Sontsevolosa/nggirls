@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('todo-list App', () => {
+describe('untitled App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('todo-list App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to todo!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
